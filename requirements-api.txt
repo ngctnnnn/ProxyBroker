@@ -1,0 +1,7 @@
+# ProxyBroker base requirements
+-r requirements/base.txt
+
+# API service requirements
+fastapi>=0.104.0
+uvicorn[standard]>=0.24.0
+pydantic>=2.0.0

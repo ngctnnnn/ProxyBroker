@@ -1,0 +1,23 @@
+services:
+  proxybroker-api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: proxybroker-api
+    ports:
+      - "${PROXYBROKER_PORT:-8008}:8008"
+    environment:
+      - PYTHONUNBUFFERED=1
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://localhost:8008/health')"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 10s
+    networks:
+      - proxybroker-network
+
+networks:
+  proxybroker-network:
+    driver: bridge

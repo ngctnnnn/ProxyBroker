@@ -1,0 +1,13 @@
+# Example docker-compose override file
+# Copy this file to docker-compose.override.yml and customize as needed
+# Or set the PROXYBROKER_PORT environment variable
+
+version: '3.8'
+
+services:
+  proxybroker-api:
+    ports:
+      - "${PROXYBROKER_PORT:-8008}:8008"
+    # Uncomment and set a custom port:
+    # ports:
+    #   - "9000:8008"  # Host port 9000 maps to container port 8008
